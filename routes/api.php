@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\ApplyJob;
 use App\Http\Controllers\Authentication;
 use App\Http\Controllers\Jobs;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,5 +24,11 @@ Route::get('/jobs', [Jobs::class, 'GetAllJob']);
 
 Route::middleware('auth:sanctum')->group(function() {
     Route::post('/logout', [Authentication::class, 'Logout']);
+    Route::get('/jobs/dashboard', [Jobs::class, 'GetDashboardJob']);
     Route::post('/jobs', [Jobs::class, 'CreateJob']);
+    Route::post('/jobs/{id}', [Jobs::class, 'EditJob']);
+    Route::delete('/jobs/{id}', [Jobs::class, 'DeleteJob']);
+    Route::post('/apply-job/{id}', [ApplyJob::class, 'ApplyJob']);
+    Route::post('/apply-job/{id}/update', [ApplyJob::class, 'UpdateApplyJob']);
+    Route::post('/profile', [ProfileController::class, 'UpdateProfile']);
 });
