@@ -52,14 +52,14 @@ class Authentication extends Controller
         try {
             $validator = Validator::make($request->all(), [
                 'name' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
                 'password' => ['required', 'min:8', Rules\Password::defaults()],
                 'confirm_password' => ['required', 'min:8', 'same:password'],
-                'numberphone' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:12'],
+                'phone' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:12', 'unique:'.User::class],
                 'role' => ['required', 'in:worker,hire']
             ]);
             if ($validator->fails()) {
-                DB::rollBack();
+                // DB::rollBack();
                 return response()->json(new ApiResource(422, false, $validator->errors(), null), 422);
             }
             $validatedData = $validator->validated();
@@ -67,7 +67,7 @@ class Authentication extends Controller
                 'name' => $validatedData['name'],
                 'email' => $validatedData['email'],
                 'password' => Hash::make($validatedData['password']),
-                'numberphone' => $validatedData['numberphone'],
+                'phone' => $validatedData['phone'],
                 'role' => $validatedData['role']
             ]);
             DB::commit();

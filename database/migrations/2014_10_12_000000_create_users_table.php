@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('password')->nullable(false);
             $table->longText('description')->nullable(true);
             $table->longText('address')->nullable(true);
-            $table->string('numberphone')->unique()->nullable(false);
+            $table->string('phone')->unique()->nullable(false);
             $table->enum('role', ['worker', 'hire'])->nullable(false);
             $table->longText('foto')->nullable(true);
             $table->longText('file')->nullable(true);
