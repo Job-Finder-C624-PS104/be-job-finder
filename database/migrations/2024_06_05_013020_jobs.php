@@ -16,7 +16,9 @@ return new class extends Migration
             $table->string('title')->nullable(false);
             $table->string('company')->nullable(false);
             $table->string('location')->nullable(false);
-            $table->integer('salary')->nullable(false);
+            $table->enum('type', ['Full Time', 'Part Time', 'Remote'])->nullable(false);
+            $table->integer('salarymin')->nullable(false);
+            $table->integer('salarymax')->nullable(false);
             $table->longText('description')->nullable(false);
             $table->timestamp('date')->nullable(false);
             $table->unsignedBigInteger('id_user')->nullable(false);

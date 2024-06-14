@@ -22,7 +22,9 @@ class JobFactory extends Factory
             'company' => fake()->company(),
             'location' => fake()->country(),
             'description' => fake()->paragraph(),
-            'salary' => fake()->numberBetween(1000000, 10000000),
+            'salarymin' => fake()->numberBetween(1000000, 10000000),
+            'salarymax' => fake()->numberBetween(1000000, 10000000),
+            'type' => fake()->randomElement(['Full Time', 'Part Time', 'Remote']),
             'date' => fake()->date(),
             'id_user' => User::all()->random()->id
         ];
