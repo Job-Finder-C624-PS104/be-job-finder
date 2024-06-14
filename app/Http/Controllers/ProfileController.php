@@ -14,6 +14,27 @@ use Illuminate\Validation\Rules\Password;
 
 class ProfileController extends Controller
 {
+    public function GetProfile() {
+        if (Auth::check()) {
+            $user = User::find(Auth::user()->id);
+
+            $foto_url = env('APP_URL').'/api/assets/images/'.$user->foto;
+            $file_url = env('APP_URL').'/api/assets/files/'.$user->file;
+            $user_info = [
+                'name' => $user->name,
+                'email' => $user->email,
+                'phone' => $user->phone,
+                'address' => $user->address,
+                'role' => $user->role,
+                'description' => $user->description,
+                'foto' => $foto_url,
+                'file' => $file_url
+            ];
+            return response()->json(new ApiResource(200, true, 'Success to get user information', $user_info), 200);            
+        } else {
+            return response()->json(new ApiResource(401, true, 'Failed to get user information, unauthorized', null), 401);            
+        }
+    }
     public function UpdateProfile(Request $request) {
         DB::beginTransaction();
         try {

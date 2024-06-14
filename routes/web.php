@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/api/assets/images/{userid}/{image}', [FileController::class, 'GetImage']);
+Route::get('/api/assets/files/{userid}/{file}', [FileController::class, 'GetFile']);
