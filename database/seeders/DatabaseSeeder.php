@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\ApplyJob;
 use App\Models\Job;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -17,5 +18,6 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(10)->create();
         Job::factory(10)->create();
+        ApplyJob::factory(10)->create();
     }
 }
