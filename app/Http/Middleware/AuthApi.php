@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Resources\ApiResource;
 use Closure;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
@@ -25,7 +26,7 @@ class AuthApi
                 throw new AuthenticationException();
             }
         } catch (AuthenticationException $e) {
-            return response()->json(['error' => 'Invalid or expired token.'], 401);
+            return response()->json(new ApiResource(401, false, 'Invalid or expired token', null), 401);
         }
 
         return $next($request);    

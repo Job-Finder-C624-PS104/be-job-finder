@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Resources\ApiResource;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,10 +17,10 @@ class Hire
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() && Auth::user()->role == 'hire') {
+        if ($request->user('sanctum') && $request->user('sanctum')->role == 'hire') {
             return $next($request);
         } else {
-            return Auth::logout();
+            return response()->json(new ApiResource(403, false, 'Forbidden: You do not have access.', null), 403);
         }
     }
 }
