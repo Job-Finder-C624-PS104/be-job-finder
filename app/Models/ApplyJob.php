@@ -16,11 +16,11 @@ class ApplyJob extends Model
         'status'
     ];
 
-    public function getJob() {
+    public function GetJob() {
         return $this->belongsTo(Job::class, 'id_job', 'id');
     }
 
-    public function getUser() {
+    public function GetUser() {
         return $this->belongsTo(User::class, 'id_user', 'id');
     }
 }

@@ -15,10 +15,15 @@ class Job extends Model
         'company',
         'location',
         'description',
-        'salary',
+        'salarymin',
+        'salarymax',
         'image',
         'date',
         'id_user'
     ];
     public $timestamps = false;
+
+    public function GetUser() {
+        return $this->belongsTo(User::class, 'id_user');
+    }
 }
