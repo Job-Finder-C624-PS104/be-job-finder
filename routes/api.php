@@ -22,7 +22,7 @@ Route::post('/login', [Authentication::class, 'Login']);
 Route::post('/register', [Authentication::class, 'Register']);
 Route::get('/jobs', [Jobs::class, 'GetAllJob']);
 
-Route::middleware('auth:sanctum')->group(function() {
+Route::middleware('auth.api')->group(function() {
     Route::post('/logout', [Authentication::class, 'Logout']);
     Route::get('/jobs/dashboard', [Jobs::class, 'GetDashboardJob']);
     Route::post('/jobs', [Jobs::class, 'CreateJob']);

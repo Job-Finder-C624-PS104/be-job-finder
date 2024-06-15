@@ -37,13 +37,11 @@ class Authentication extends Controller
     
     public function Logout(Request $request) {
         
-        if (Auth::user()) {
-            Auth::guard('web')->logout();
-            $request->session()->invalidate();            
-            $request->session()->regenerateToken();
+        if ($request->user('sanctum')) {
+            $request->user('sanctum')->currentAccessToken()->delete();
             return response()->json(new ApiResource(200, true, "Logout Success", null), 200);
         } else {            
-            return response()->json(new ApiResource(401, true, "Logout Failed", null), 401);
+            return response()->json(new ApiResource(401, true, "Logout Failed, Invalid or expired token", null), 401);
         }
     }    
 
