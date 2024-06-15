@@ -1,0 +1,542 @@
+{
+	"info": {
+		"_postman_id": "25147b01-2e0c-42d5-be3e-1d00744c852c",
+		"name": "jobfinder-dev",
+		"description": "Documentation for Website JobFinder build with Frontend ReactJS and Backend Laravel.  \nAuthor:  \n1\\. @Azzaxy ([https://github.com/azzaxy1](https://github.com/azzaxy1)) \\[Frontend Developer\\]\n\n2\\. @Anuraaaa ([https://github.com/Anuraaaa](https://github.com/Anuraaaa)) \\[Backend Developer\\]\n\n3\\. @Marcel ([https://github.com/aclrdhv](https://github.com/aclrdhv)) \\[Frontend Developer\\]",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27116353"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "anwar",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "anwar@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "anwar123",
+							"type": "text"
+						},
+						{
+							"key": "confirm_password",
+							"value": "anwar123",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "085939410330",
+							"type": "text"
+						},
+						{
+							"key": "role",
+							"value": "worker",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "anwar@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "anwar123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|EHrytOeZXh01iwaVWVi2kppikMJrH2DDv6Ywxe9G9afca18a",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/logout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllJob",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/jobs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"jobs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetDashboardJob",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|pObLEBxKNrRbVQHfyLLMzqY6T4SumJsFegWmLKqUed493415",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/jobs/dashboard",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"jobs",
+						"dashboard"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateJob",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|pObLEBxKNrRbVQHfyLLMzqY6T4SumJsFegWmLKqUed493415",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "asdadas",
+							"type": "text"
+						},
+						{
+							"key": "company",
+							"value": "anwar123",
+							"type": "text"
+						},
+						{
+							"key": "location",
+							"value": "sdasdasda",
+							"type": "text"
+						},
+						{
+							"key": "salarymin",
+							"value": "1000",
+							"type": "text"
+						},
+						{
+							"key": "salarymax",
+							"value": "10000",
+							"type": "text"
+						},
+						{
+							"key": "type",
+							"value": "Remote",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "gabut",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/jobs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"jobs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateJob",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|OTHLbLnJ5EHlANqag00aNrhNQcskbOAa1vgZwmVb07df2b85",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "asdadas",
+							"type": "text"
+						},
+						{
+							"key": "company",
+							"value": "anwar123",
+							"type": "text"
+						},
+						{
+							"key": "location",
+							"value": "sdasdasda",
+							"type": "text"
+						},
+						{
+							"key": "salarymin",
+							"value": "1000",
+							"type": "text"
+						},
+						{
+							"key": "salarymax",
+							"value": "10000",
+							"type": "text"
+						},
+						{
+							"key": "type",
+							"value": "Remote",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "gabut",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/jobs/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"jobs",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteJob",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|pObLEBxKNrRbVQHfyLLMzqY6T4SumJsFegWmLKqUed493415",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/jobs/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"jobs",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateProfile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|OTHLbLnJ5EHlANqag00aNrhNQcskbOAa1vgZwmVb07df2b85",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "description",
+							"value": "asdasdasdad",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "adsadasds",
+							"type": "text"
+						},
+						{
+							"key": "foto",
+							"type": "file",
+							"src": "/C:/Users/INTEL/Pictures/Screenshots/buktiuploadkrs.png"
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/INTEL/Downloads/Laporan Progres_C624-PS104.pdf"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/profile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetProfile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|OTHLbLnJ5EHlANqag00aNrhNQcskbOAa1vgZwmVb07df2b85",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/profile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ApplyJob",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|pObLEBxKNrRbVQHfyLLMzqY6T4SumJsFegWmLKqUed493415",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/apply-job/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"apply-job",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateApplyJob",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|pObLEBxKNrRbVQHfyLLMzqY6T4SumJsFegWmLKqUed493415",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "status",
+							"value": "pending",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/apply-job/2/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"apply-job",
+						"2",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetApplyJob",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|pObLEBxKNrRbVQHfyLLMzqY6T4SumJsFegWmLKqUed493415",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/apply-job",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"apply-job"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
