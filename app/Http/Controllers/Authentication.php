@@ -73,7 +73,7 @@ class Authentication extends Controller
             
         } catch(Exception $e) {
             DB::rollBack();
-            return response()->json(new ApiResource(500, true, "Register Failed, An Error Occurred", null), 500);
+            return response()->json(new ApiResource(500, true, "Register Failed, An Error Occurred", $e->getMessage()), 500);
         }
     }
 }

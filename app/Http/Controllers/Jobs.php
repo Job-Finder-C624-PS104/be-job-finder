@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Validator;
 class Jobs extends Controller
 {
     public function GetAllJob() {
-        $jobs = Job::all();
+        $jobs = Job::with('GetUser')->get();
         
         if ($jobs) {
             return response()->json(new ApiResource(200, true, 'Successfully to get all job', $jobs), 200);
@@ -25,8 +25,8 @@ class Jobs extends Controller
         }
     }
 
-    public function GetDashboardJob() {
-        $jobs = Job::where('id_user', Auth::user()->id)->get();
+    public function GetDashboardJob(Request $request) {
+        $jobs = Job::where('id_user', $request->user('sanctum')->id)->get();
         
         if ($jobs) {
             $count_jobs = $jobs->count();
@@ -36,7 +36,7 @@ class Jobs extends Controller
                 $start_date = Carbon::now()->startOfMonth()->addMonths($i)->toDateString();
                 $end_date = Carbon::now()->startOfMonth()->addMonths($i)->endOfMonth()->toDateString();
                         
-                $total_count = Job::where('id_user', Auth::user()->id)->whereBetween('date', [$start_date, $end_date])->count();
+                $total_count = Job::where('id_user', $request->user('sanctum')->id)->whereBetween('date', [$start_date, $end_date])->count();
             
                 $records_jobs_month[$start_date] = $total_count;
             }
@@ -77,13 +77,13 @@ class Jobs extends Controller
                 'salarymax' => $validatedData['salarymax'],
                 'type' => $validatedData['type'],
                 'description' => $validatedData['description'],
-                'id_user' => Auth::user()->id
+                'id_user' => $request->user('sanctum')->id
             ]);
             DB::commit();
             return response()->json(new ApiResource(201, true, "Job has been successfully added", $job), 201);
         } catch (Exception $e) {
             DB::rollBack();
-            return response()->json(new ApiResource(500, true, "Job has been failed to be added", null), 500);
+            return response()->json(new ApiResource(500, true, "Job has been failed to be added", $e->getMessage()), 500);
         }
     }
 
@@ -119,13 +119,13 @@ class Jobs extends Controller
                 'salarymax' => $validatedData['salarymax'],
                 'type' => $validatedData['type'],
                 'description' => $validatedData['description'],
-                'id_user' => Auth::user()->id
+                'id_user' => $request->user('sanctum')->id
             ]);
             DB::commit();
-            return response()->json(new ApiResource(201, true, "Job has been successfully added", $job), 201);
+            return response()->json(new ApiResource(201, true, "Job has been successfully updated", $job), 201);
         } catch (Exception $e) {
             DB::rollBack();
-            return response()->json(new ApiResource(500, true, "Job has been failed to be added", null), 500);
+            return response()->json(new ApiResource(500, true, "Job has been failed to be updated", $e->getMessage()), 500);
         }
     }
 
@@ -133,13 +133,17 @@ class Jobs extends Controller
         DB::beginTransaction();
 
         try {
-            $job = Job::where('id', $id)->first();
-            Job::where('id', $id)->delete();
+            $job_dump = Job::find($id);
+            $job = Job::find($id);
+            if (!$job) {
+                return response()->json(new ApiResource(404, false, 'Job not found', null), 404);
+            }
+            $job->delete();
             DB::commit();
-            return response()->json(new ApiResource(200, true, "Job has been successfully deleted", $job), 200);
+            return response()->json(new ApiResource(200, true, "Job has been successfully deleted", $job_dump), 200);
         } catch (Exception $e) {
             DB::rollBack();
-            return response()->json(new ApiResource(500, true, "Job has been failed to be deleted", null), 500);
+            return response()->json(new ApiResource(500, true, "Job has been failed to be deleted", $e->getMessage()), 500);
         }
     }
 }

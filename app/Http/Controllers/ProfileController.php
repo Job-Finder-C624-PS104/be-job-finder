@@ -14,12 +14,14 @@ use Illuminate\Validation\Rules\Password;
 
 class ProfileController extends Controller
 {
-    public function GetProfile() {
-        if (Auth::check()) {
-            $user = User::find(Auth::user()->id);
+    public function GetProfile(Request $request) {
+        if ($request->user('sanctum')) {
+            $user = User::find($request->user('sanctum')->id);
 
-            $foto_url = env('APP_URL').'/api/assets/images/'.$user->foto;
-            $file_url = env('APP_URL').'/api/assets/files/'.$user->file;
+            $foto_name = env('APP_URL').'/api/assets/images/'.$user->foto;
+            $file_name = env('APP_URL').'/api/assets/files/'.$user->file;
+            $foto_url = env('APP_URL').'/api/assets/files/'.$user->foto_url;
+            $file_url = env('APP_URL').'/api/assets/files/'.$user->file_url;
             $user_info = [
                 'name' => $user->name,
                 'email' => $user->email,
@@ -27,8 +29,10 @@ class ProfileController extends Controller
                 'address' => $user->address,
                 'role' => $user->role,
                 'description' => $user->description,
-                'foto' => $foto_url,
-                'file' => $file_url
+                'foto' => $foto_name,
+                'file' => $file_name,
+                'foto_url' => $foto_url,
+                'file_url' => $file_url
             ];
             return response()->json(new ApiResource(200, true, 'Success to get user information', $user_info), 200);            
         } else {
@@ -62,7 +66,7 @@ class ProfileController extends Controller
             }
             $validatedData = $validator->validated();
 
-            $user = User::find(Auth::user()->id);
+            $user = User::find($request->user('sanctum')->id);
             $updateData = [];
             if (isset($validatedData['name'])) {
                 $updateData['name'] = $validatedData['name'];
@@ -83,27 +87,29 @@ class ProfileController extends Controller
                 $updateData['description'] = $validatedData['description'];
             }            
             if (isset($validatedData['foto'])) {
-                $file_path = public_path('assets/users/user-'. Auth::user()->id .'/images/' . $user->foto);
+                $file_path = public_path('assets/users/user-'. $request->user('sanctum')->id .'/images/' . $user->foto);
 
                 if (file_exists($file_path) && is_file($file_path)) {
                     unlink($file_path);
                 }
     
-                $image_name = 'user-'. Auth::user()->id . '-' . time() . '.' . $request->foto->extension();
-                $request->foto->move(public_path('assets/users/user-'. Auth::user()->id .'/images/'), $image_name);
-
+                $image_name = 'user-'. $request->user('sanctum')->id . '-' . time() . '.' . $request->foto->extension();
+                $request->foto->move(public_path('assets/users/user-'. $request->user('sanctum')->id .'/images/'), $image_name);
+                $image_url = env('APP_URL').'/api/assets/images/'.$request->user('sanctum')->id.'/'.$image_name;
+                $updateData['foto_url'] = $image_url;
                 $updateData['foto'] = $image_name;
             }            
             if (isset($validatedData['file'])) {
-                $file_path = public_path('assets/users/user-'. Auth::user()->id .'/files/' . $user->file);
+                $file_path = public_path('assets/users/user-'. $request->user('sanctum')->id .'/files/' . $user->file);
 
                 if (file_exists($file_path) && is_file($file_path)) {
                     unlink($file_path);
                 }
     
-                $file_name = 'user-'. Auth::user()->id . '-'. time() . '.' . $request->file->extension();
-                $request->file->move(public_path('assets/users/user-'. Auth::user()->id .'/files/'), $file_name);
-
+                $file_name = 'user-'. $request->user('sanctum')->id . '-'. time() . '.' . $request->file->extension();
+                $request->file->move(public_path('assets/users/user-'. $request->user('sanctum')->id .'/files/'), $file_name);
+                $file_url = env('APP_URL').'/api/assets/files/'.$request->user('sanctum')->id.'/'.$file_name;
+                $updateData['file_url'] = $file_url;
                 $updateData['file'] = $file_name;
             }            
             $user->update($updateData);
@@ -111,7 +117,7 @@ class ProfileController extends Controller
             return response()->json(new ApiResource(200, true, "Profile has been successfully updated", $user), 200);
         } catch (Exception $e) {
             DB::rollBack();
-            return response()->json(new ApiResource(500, true, "Profile has been failed to be updated", null), 500);
+            return response()->json(new ApiResource(500, true, "Profile has been failed to be updated", $e->getMessage()), 500);
         }
     }
 }
