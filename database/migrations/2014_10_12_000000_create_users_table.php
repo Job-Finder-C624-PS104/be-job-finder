@@ -22,7 +22,9 @@ return new class extends Migration
             $table->string('phone')->unique()->nullable(false);
             $table->enum('role', ['worker', 'hire'])->nullable(false);
             $table->longText('foto')->nullable(true);
+            $table->longText('foto_url')->nullable(true);
             $table->longText('file')->nullable(true);
+            $table->longText('file_url')->nullable(true);
             $table->rememberToken();
             $table->timestamps();
         });

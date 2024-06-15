@@ -26,7 +26,9 @@ class User extends Authenticatable
         'description',
         'role',
         'foto',
-        'file'
+        'foto_url',
+        'file',
+        'file_url'
     ];
 
     /**
