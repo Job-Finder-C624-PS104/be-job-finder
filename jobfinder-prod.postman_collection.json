@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "6c44fd71-9e70-45a5-92a1-585b41641a49",
+		"_postman_id": "84b2575f-ddcd-46da-ac82-47edeb7df4a3",
 		"name": "jobfinder-prod",
 		"description": "Documentation for Website JobFinder build with Frontend ReactJS and Backend Laravel.  \nAuthor:  \n1\\. @Azzaxy ([https://github.com/azzaxy1](https://github.com/azzaxy1)) \\[Frontend Developer\\]\n\n2\\. @Anuraaaa ([https://github.com/Anuraaaa](https://github.com/Anuraaaa)) \\[Backend Developer\\]\n\n3\\. @Marcel ([https://github.com/aclrdhv](https://github.com/aclrdhv)) \\[Frontend Developer\\]",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -559,6 +559,39 @@
 					"path": [
 						"api",
 						"apply-job"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllApplyJob",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|pObLEBxKNrRbVQHfyLLMzqY6T4SumJsFegWmLKqUed493415",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jobfinder.anwar-fauzan.my.id/api/apply-job/all",
+					"protocol": "https",
+					"host": [
+						"jobfinder",
+						"anwar-fauzan",
+						"my",
+						"id"
+					],
+					"path": [
+						"api",
+						"apply-job",
+						"all"
 					]
 				}
 			},
