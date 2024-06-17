@@ -19,6 +19,7 @@ class ProfileController extends Controller
             $user = User::find($request->user('sanctum')->id);
 
             $user_info = [
+                'id' => $user->id,
                 'name' => $user->name,
                 'email' => $user->email,
                 'phone' => $user->phone,

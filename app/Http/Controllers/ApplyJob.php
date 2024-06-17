@@ -12,7 +12,10 @@ use Illuminate\Support\Facades\Validator;
 
 class ApplyJob extends Controller
 {
-    public function GetAllApplyJob() {
+    public function GetAllApplyJob(Request $request) {
+        if ($request->user('sanctum')->role != 'hire') {
+            return response()->json(new ApiResource(403, true, 'Failed to get all apply job, forbidden access no permission', null), 403);            
+        }
         $jobs = ModelsApplyJob::with('GetJob')->with('GetUser')->get();
 
         if ($jobs) {
@@ -23,6 +26,9 @@ class ApplyJob extends Controller
     }
 
     public function GetApplyJob(Request $request) {
+        if ($request->user('sanctum')->role != 'worker') {
+            return response()->json(new ApiResource(403, true, 'Failed to get apply job, forbidden access no permission', null), 403);            
+        }
         $jobs = ModelsApplyJob::where('id_user', $request->user('sanctum')->id)->with('GetJob')->with('GetUser')->get();
 
         if ($jobs) {
@@ -33,6 +39,9 @@ class ApplyJob extends Controller
     }
 
     public function ApplyJob(Request $request, $id) {
+        if ($request->user('sanctum')->role != 'worker') {
+            return response()->json(new ApiResource(403, true, 'Failed to apply job, forbidden access no permission', null), 403);            
+        }
         DB::beginTransaction();
         try {            
             $job = Job::find($id);

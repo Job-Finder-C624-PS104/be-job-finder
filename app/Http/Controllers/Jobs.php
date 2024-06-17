@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Resources\ApiResource;
 use App\Http\Controllers\Controller;
+use App\Models\ApplyJob;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -24,26 +25,56 @@ class Jobs extends Controller
             return response()->json(new ApiResource(400, true, 'Failed to get all job, not found', null), 400);
         }
     }
-
-    public function GetDashboardJob(Request $request) {
-        $jobs = Job::where('id_user', $request->user('sanctum')->id)->get();
+    
+    public function GetDashboardAllJob(Request $request) {
+        if ($request->user('sanctum')->role != 'hire') {
+            return response()->json(new ApiResource(403, true, 'Failed to get all job, forbidden access no permission', null), 403);            
+        }
+        $jobs = Job::where('id_user', $request->user('sanctum')->id)->with('GetUser')->get();
         
         if ($jobs) {
-            $count_jobs = $jobs->count();
-            $records_jobs_month = [];
+            return response()->json(new ApiResource(200, true, 'Successfully to get all job', $jobs), 200);
+        }
+        else {
+            return response()->json(new ApiResource(400, true, 'Failed to get all job, not found', null), 400);
+        }        
+    }
 
+    public function GetDashboardJob(Request $request) {
+        if ($request->user('sanctum')->role != 'hire') {
+            return response()->json(new ApiResource(403, true, 'Failed to get dashboard job, forbidden access no permission', null), 403);            
+        }
+        $jobs = Job::where('id_user', $request->user('sanctum')->id)->get();
+        if ($jobs) {
+
+            $count_jobs = $jobs->count();
+            $count_apply = 0;
+            $records_jobs_month = [];
+            $records_apply_month = [];
             for ($i = 0; $i <= 5; $i++) {
                 $start_date = Carbon::now()->startOfMonth()->addMonths($i)->toDateString();
                 $end_date = Carbon::now()->startOfMonth()->addMonths($i)->endOfMonth()->toDateString();
                         
-                $total_count = Job::where('id_user', $request->user('sanctum')->id)->whereBetween('date', [$start_date, $end_date])->count();
-            
-                $records_jobs_month[$start_date] = $total_count;
+                $total_count_job = Job::where('id_user', $request->user('sanctum')->id)->whereBetween('created_at', [$start_date, $end_date])->count();            
+                $records_jobs_month[$i] = $total_count_job;
             }
+            foreach ($jobs as $job) {
+                $count_apply = ApplyJob::where('id_job', $job->id)->count();
+
+                for ($i = 0; $i <= 5; $i++) {
+                    $start_date = Carbon::now()->startOfMonth()->addMonths($i)->toDateString();
+                    $end_date = Carbon::now()->startOfMonth()->addMonths($i)->endOfMonth()->toDateString();
+                            
+                    $total_count_apply = ApplyJob::where('id_job', $job->id)->whereBetween('created_at', [$start_date, $end_date])->count();
+                    $records_apply_month[$i] = $total_count_apply;
+                }
+            }        
             
             return response()->json(new ApiResource(200, true, 'Successfully to get all job', [
                 'totalJobs' => $count_jobs,
-                'recordsJobs' => $records_jobs_month
+                'recordsJobs' => $records_jobs_month,
+                'totalApply' => $count_apply,
+                'recordsApply' => $records_apply_month
             ]), 200);
         }
         else {
@@ -52,6 +83,9 @@ class Jobs extends Controller
     }
 
     public function CreateJob(Request $request) {
+        if ($request->user('sanctum')->role != 'hire') {
+            return response()->json(new ApiResource(403, true, 'Failed to create job, forbidden access no permission', null), 403);            
+        }
         DB::beginTransaction();
         try {
             $validator = Validator::make($request->all(), [
@@ -88,6 +122,9 @@ class Jobs extends Controller
     }
 
     public function EditJob(Request $request, $id) {
+        if ($request->user('sanctum')->role != 'hire') {
+            return response()->json(new ApiResource(403, true, 'Failed to edit job, forbidden access no permission', null), 403);            
+        }
         DB::beginTransaction();
         try {
             $validator = Validator::make($request->all(), [
@@ -129,9 +166,11 @@ class Jobs extends Controller
         }
     }
 
-    public function DeleteJob($id) {
+    public function DeleteJob(Request $request, $id) {
+        if ($request->user('sanctum')->role != 'hire') {
+            return response()->json(new ApiResource(403, true, 'Failed to delete job, forbidden access no permission', null), 403);            
+        }
         DB::beginTransaction();
-
         try {
             $job_dump = Job::find($id);
             $job = Job::find($id);
