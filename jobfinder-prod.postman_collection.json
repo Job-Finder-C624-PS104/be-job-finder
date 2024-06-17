@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "84b2575f-ddcd-46da-ac82-47edeb7df4a3",
+		"_postman_id": "d99bebd3-1521-4eb3-9131-0388e5bd3dc2",
 		"name": "jobfinder-prod",
 		"description": "Documentation for Website JobFinder build with Frontend ReactJS and Backend Laravel.  \nAuthor:  \n1\\. @Azzaxy ([https://github.com/azzaxy1](https://github.com/azzaxy1)) \\[Frontend Developer\\]\n\n2\\. @Anuraaaa ([https://github.com/Anuraaaa](https://github.com/Anuraaaa)) \\[Backend Developer\\]\n\n3\\. @Marcel ([https://github.com/aclrdhv](https://github.com/aclrdhv)) \\[Frontend Developer\\]",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -17,27 +17,27 @@
 					"formdata": [
 						{
 							"key": "name",
-							"value": "anwar",
+							"value": "user",
 							"type": "text"
 						},
 						{
 							"key": "email",
-							"value": "anwar@gmail.com",
+							"value": "user@gmail.com",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "anwar123",
+							"value": "User123!",
 							"type": "text"
 						},
 						{
 							"key": "confirm_password",
-							"value": "anwar123",
+							"value": "User123!",
 							"type": "text"
 						},
 						{
 							"key": "phone",
-							"value": "085939410330",
+							"value": "0812345678915",
 							"type": "text"
 						},
 						{
@@ -74,12 +74,12 @@
 					"formdata": [
 						{
 							"key": "email",
-							"value": "anwar@gmail.com",
+							"value": "user@gmail.com",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "anwar123",
+							"value": "User123!",
 							"type": "text"
 						}
 					]
@@ -109,7 +109,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "1|EHrytOeZXh01iwaVWVi2kppikMJrH2DDv6Ywxe9G9afca18a",
+							"value": "1|9w5mWlTKuO5pc4SRXZ1fToWZyJGcjC9FsWUlmqi24eac964f",
 							"type": "string"
 						}
 					]
@@ -128,6 +128,124 @@
 					"path": [
 						"api",
 						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetProfile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "2|ueOxUqyXL7SfEB3w44q6pqg8soEUmCGd57HOh8aG4fb0de18",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jobfinder.anwar-fauzan.my.id/api/profile",
+					"protocol": "https",
+					"host": [
+						"jobfinder",
+						"anwar-fauzan",
+						"my",
+						"id"
+					],
+					"path": [
+						"api",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateProfile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "2|ueOxUqyXL7SfEB3w44q6pqg8soEUmCGd57HOh8aG4fb0de18",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "asdasdasd",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "aeadmadae@gmail.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "ASasdhaskjd!",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "confirm_password",
+							"value": "ASasdhaskjd!",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "phone",
+							"value": "0812345678912",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "adsadsada",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "asdasdasda",
+							"type": "text"
+						},
+						{
+							"key": "foto",
+							"type": "file",
+							"src": "/C:/Users/INTEL/Pictures/Screenshots/buktiuploadkrs.png"
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/INTEL/Downloads/Laporan Progres_C624-PS104.pdf"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://jobfinder.anwar-fauzan.my.id/api/profile",
+					"protocol": "https",
+					"host": [
+						"jobfinder",
+						"anwar-fauzan",
+						"my",
+						"id"
+					],
+					"path": [
+						"api",
+						"profile"
 					]
 				}
 			},
@@ -163,7 +281,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "1|pObLEBxKNrRbVQHfyLLMzqY6T4SumJsFegWmLKqUed493415",
+							"value": "2|ueOxUqyXL7SfEB3w44q6pqg8soEUmCGd57HOh8aG4fb0de18",
 							"type": "string"
 						}
 					]
@@ -171,7 +289,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://jobfinder.anwar-fauzan.my.id/api/jobs/dashboard",
+					"raw": "https://jobfinder.anwar-fauzan.my.id/api/hire/jobs/dashboard",
 					"protocol": "https",
 					"host": [
 						"jobfinder",
@@ -181,6 +299,7 @@
 					],
 					"path": [
 						"api",
+						"hire",
 						"jobs",
 						"dashboard"
 					]
@@ -196,7 +315,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "1|pObLEBxKNrRbVQHfyLLMzqY6T4SumJsFegWmLKqUed493415",
+							"value": "2|ueOxUqyXL7SfEB3w44q6pqg8soEUmCGd57HOh8aG4fb0de18",
 							"type": "string"
 						}
 					]
@@ -244,7 +363,7 @@
 					]
 				},
 				"url": {
-					"raw": "https://jobfinder.anwar-fauzan.my.id/api/jobs",
+					"raw": "https://jobfinder.anwar-fauzan.my.id/api/hire/jobs",
 					"protocol": "https",
 					"host": [
 						"jobfinder",
@@ -254,6 +373,7 @@
 					],
 					"path": [
 						"api",
+						"hire",
 						"jobs"
 					]
 				}
@@ -268,7 +388,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "1|OTHLbLnJ5EHlANqag00aNrhNQcskbOAa1vgZwmVb07df2b85",
+							"value": "2|ueOxUqyXL7SfEB3w44q6pqg8soEUmCGd57HOh8aG4fb0de18",
 							"type": "string"
 						}
 					]
@@ -316,7 +436,7 @@
 					]
 				},
 				"url": {
-					"raw": "https://jobfinder.anwar-fauzan.my.id/api/jobs/1",
+					"raw": "https://jobfinder.anwar-fauzan.my.id/api/hire/jobs/1",
 					"protocol": "https",
 					"host": [
 						"jobfinder",
@@ -326,6 +446,7 @@
 					],
 					"path": [
 						"api",
+						"hire",
 						"jobs",
 						"1"
 					]
@@ -341,7 +462,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "1|pObLEBxKNrRbVQHfyLLMzqY6T4SumJsFegWmLKqUed493415",
+							"value": "2|ueOxUqyXL7SfEB3w44q6pqg8soEUmCGd57HOh8aG4fb0de18",
 							"type": "string"
 						}
 					]
@@ -349,7 +470,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "https://jobfinder.anwar-fauzan.my.id/api/jobs/1",
+					"raw": "https://jobfinder.anwar-fauzan.my.id/api/hire/jobs/1",
 					"protocol": "https",
 					"host": [
 						"jobfinder",
@@ -359,97 +480,9 @@
 					],
 					"path": [
 						"api",
+						"hire",
 						"jobs",
 						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "UpdateProfile",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "1|OTHLbLnJ5EHlANqag00aNrhNQcskbOAa1vgZwmVb07df2b85",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "description",
-							"value": "asdasdasdad",
-							"type": "text"
-						},
-						{
-							"key": "address",
-							"value": "adsadasds",
-							"type": "text"
-						},
-						{
-							"key": "foto",
-							"type": "file",
-							"src": "/C:/Users/INTEL/Pictures/Screenshots/buktiuploadkrs.png"
-						},
-						{
-							"key": "file",
-							"type": "file",
-							"src": "/C:/Users/INTEL/Downloads/Laporan Progres_C624-PS104.pdf"
-						}
-					]
-				},
-				"url": {
-					"raw": "https://jobfinder.anwar-fauzan.my.id/api/profile",
-					"protocol": "https",
-					"host": [
-						"jobfinder",
-						"anwar-fauzan",
-						"my",
-						"id"
-					],
-					"path": [
-						"api",
-						"profile"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GetProfile",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "1|OTHLbLnJ5EHlANqag00aNrhNQcskbOAa1vgZwmVb07df2b85",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://jobfinder.anwar-fauzan.my.id/api/profile",
-					"protocol": "https",
-					"host": [
-						"jobfinder",
-						"anwar-fauzan",
-						"my",
-						"id"
-					],
-					"path": [
-						"api",
-						"profile"
 					]
 				}
 			},
@@ -463,7 +496,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "1|pObLEBxKNrRbVQHfyLLMzqY6T4SumJsFegWmLKqUed493415",
+							"value": "3|X4mmDMxh2YRYgkrxymI3UAUT4ueC7RAFNzPxfx3O3c4e04a5",
 							"type": "string"
 						}
 					]
@@ -471,7 +504,7 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "https://jobfinder.anwar-fauzan.my.id/api/apply-job/2",
+					"raw": "https://jobfinder.anwar-fauzan.my.id/api/worker/apply-job/12",
 					"protocol": "https",
 					"host": [
 						"jobfinder",
@@ -481,8 +514,9 @@
 					],
 					"path": [
 						"api",
+						"worker",
 						"apply-job",
-						"2"
+						"12"
 					]
 				}
 			},
@@ -496,7 +530,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "1|pObLEBxKNrRbVQHfyLLMzqY6T4SumJsFegWmLKqUed493415",
+							"value": "2|ueOxUqyXL7SfEB3w44q6pqg8soEUmCGd57HOh8aG4fb0de18",
 							"type": "string"
 						}
 					]
@@ -508,13 +542,13 @@
 					"formdata": [
 						{
 							"key": "status",
-							"value": "pending",
+							"value": "accept",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "https://jobfinder.anwar-fauzan.my.id/api/apply-job/2/update",
+					"raw": "https://jobfinder.anwar-fauzan.my.id/api/hire/apply-job/12/update",
 					"protocol": "https",
 					"host": [
 						"jobfinder",
@@ -524,8 +558,9 @@
 					],
 					"path": [
 						"api",
+						"hire",
 						"apply-job",
-						"2",
+						"12",
 						"update"
 					]
 				}
@@ -540,7 +575,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "1|pObLEBxKNrRbVQHfyLLMzqY6T4SumJsFegWmLKqUed493415",
+							"value": "3|X4mmDMxh2YRYgkrxymI3UAUT4ueC7RAFNzPxfx3O3c4e04a5",
 							"type": "string"
 						}
 					]
@@ -548,7 +583,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://jobfinder.anwar-fauzan.my.id/api/apply-job",
+					"raw": "https://jobfinder.anwar-fauzan.my.id/api/worker/apply-job",
 					"protocol": "https",
 					"host": [
 						"jobfinder",
@@ -558,6 +593,7 @@
 					],
 					"path": [
 						"api",
+						"worker",
 						"apply-job"
 					]
 				}
@@ -572,7 +608,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "1|pObLEBxKNrRbVQHfyLLMzqY6T4SumJsFegWmLKqUed493415",
+							"value": "2|ueOxUqyXL7SfEB3w44q6pqg8soEUmCGd57HOh8aG4fb0de18",
 							"type": "string"
 						}
 					]
@@ -580,7 +616,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://jobfinder.anwar-fauzan.my.id/api/apply-job/all",
+					"raw": "https://jobfinder.anwar-fauzan.my.id/api/hire/apply-job/all",
 					"protocol": "https",
 					"host": [
 						"jobfinder",
@@ -590,6 +626,7 @@
 					],
 					"path": [
 						"api",
+						"hire",
 						"apply-job",
 						"all"
 					]

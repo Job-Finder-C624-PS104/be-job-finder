@@ -17,27 +17,27 @@
 					"formdata": [
 						{
 							"key": "name",
-							"value": "anwar",
+							"value": "user",
 							"type": "text"
 						},
 						{
 							"key": "email",
-							"value": "anwar@gmail.com",
+							"value": "user@gmail.com",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "anwar123",
+							"value": "User123!",
 							"type": "text"
 						},
 						{
 							"key": "confirm_password",
-							"value": "anwar123",
+							"value": "User123!",
 							"type": "text"
 						},
 						{
 							"key": "phone",
-							"value": "085939410330",
+							"value": "0812345678915",
 							"type": "text"
 						},
 						{
@@ -72,12 +72,12 @@
 					"formdata": [
 						{
 							"key": "email",
-							"value": "anwar@gmail.com",
+							"value": "user@gmail.com",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "Johan123!",
+							"value": "User123!",
 							"type": "text"
 						}
 					]
@@ -105,7 +105,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "16|ZggCsdQFkoFdeDgTUNmNbKTysqMB4wyfu44dJJiL3c5e4510",
+							"value": "1|9w5mWlTKuO5pc4SRXZ1fToWZyJGcjC9FsWUlmqi24eac964f",
 							"type": "string"
 						}
 					]
@@ -122,6 +122,120 @@
 					"path": [
 						"api",
 						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetProfile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "2|ueOxUqyXL7SfEB3w44q6pqg8soEUmCGd57HOh8aG4fb0de18",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/profile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateProfile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "2|ueOxUqyXL7SfEB3w44q6pqg8soEUmCGd57HOh8aG4fb0de18",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "asdasdasd",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "aeadmadae@gmail.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "ASasdhaskjd!",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "confirm_password",
+							"value": "ASasdhaskjd!",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "phone",
+							"value": "0812345678912",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "adsadsada",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "asdasdasda",
+							"type": "text"
+						},
+						{
+							"key": "foto",
+							"type": "file",
+							"src": "/C:/Users/INTEL/Pictures/Screenshots/buktiuploadkrs.png"
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/INTEL/Downloads/Laporan Progres_C624-PS104.pdf"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/profile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"profile"
 					]
 				}
 			},
@@ -155,7 +269,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "1|pObLEBxKNrRbVQHfyLLMzqY6T4SumJsFegWmLKqUed493415",
+							"value": "2|ueOxUqyXL7SfEB3w44q6pqg8soEUmCGd57HOh8aG4fb0de18",
 							"type": "string"
 						}
 					]
@@ -163,7 +277,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8000/api/jobs/dashboard",
+					"raw": "http://localhost:8000/api/hire/jobs/dashboard",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -171,6 +285,7 @@
 					"port": "8000",
 					"path": [
 						"api",
+						"hire",
 						"jobs",
 						"dashboard"
 					]
@@ -186,7 +301,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "1|pObLEBxKNrRbVQHfyLLMzqY6T4SumJsFegWmLKqUed493415",
+							"value": "2|ueOxUqyXL7SfEB3w44q6pqg8soEUmCGd57HOh8aG4fb0de18",
 							"type": "string"
 						}
 					]
@@ -234,7 +349,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/jobs",
+					"raw": "http://localhost:8000/api/hire/jobs",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -242,6 +357,7 @@
 					"port": "8000",
 					"path": [
 						"api",
+						"hire",
 						"jobs"
 					]
 				}
@@ -256,7 +372,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "1|OTHLbLnJ5EHlANqag00aNrhNQcskbOAa1vgZwmVb07df2b85",
+							"value": "2|ueOxUqyXL7SfEB3w44q6pqg8soEUmCGd57HOh8aG4fb0de18",
 							"type": "string"
 						}
 					]
@@ -304,7 +420,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/jobs/1",
+					"raw": "http://localhost:8000/api/hire/jobs/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -312,6 +428,7 @@
 					"port": "8000",
 					"path": [
 						"api",
+						"hire",
 						"jobs",
 						"1"
 					]
@@ -327,7 +444,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "1|pObLEBxKNrRbVQHfyLLMzqY6T4SumJsFegWmLKqUed493415",
+							"value": "2|ueOxUqyXL7SfEB3w44q6pqg8soEUmCGd57HOh8aG4fb0de18",
 							"type": "string"
 						}
 					]
@@ -335,7 +452,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8000/api/jobs/1",
+					"raw": "http://localhost:8000/api/hire/jobs/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -343,93 +460,9 @@
 					"port": "8000",
 					"path": [
 						"api",
+						"hire",
 						"jobs",
 						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "UpdateProfile",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "1|OTHLbLnJ5EHlANqag00aNrhNQcskbOAa1vgZwmVb07df2b85",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "description",
-							"value": "asdasdasdad",
-							"type": "text"
-						},
-						{
-							"key": "address",
-							"value": "adsadasds",
-							"type": "text"
-						},
-						{
-							"key": "foto",
-							"type": "file",
-							"src": "/C:/Users/INTEL/Pictures/Screenshots/buktiuploadkrs.png"
-						},
-						{
-							"key": "file",
-							"type": "file",
-							"src": "/C:/Users/INTEL/Downloads/Laporan Progres_C624-PS104.pdf"
-						}
-					]
-				},
-				"url": {
-					"raw": "http://localhost:8000/api/profile",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"profile"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GetProfile",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "1|OTHLbLnJ5EHlANqag00aNrhNQcskbOAa1vgZwmVb07df2b85",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8000/api/profile",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"profile"
 					]
 				}
 			},
@@ -443,7 +476,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "1|pObLEBxKNrRbVQHfyLLMzqY6T4SumJsFegWmLKqUed493415",
+							"value": "3|X4mmDMxh2YRYgkrxymI3UAUT4ueC7RAFNzPxfx3O3c4e04a5",
 							"type": "string"
 						}
 					]
@@ -451,7 +484,7 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8000/api/apply-job/2",
+					"raw": "http://localhost:8000/api/worker/apply-job/12",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -459,8 +492,9 @@
 					"port": "8000",
 					"path": [
 						"api",
+						"worker",
 						"apply-job",
-						"2"
+						"12"
 					]
 				}
 			},
@@ -474,7 +508,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "1|pObLEBxKNrRbVQHfyLLMzqY6T4SumJsFegWmLKqUed493415",
+							"value": "2|ueOxUqyXL7SfEB3w44q6pqg8soEUmCGd57HOh8aG4fb0de18",
 							"type": "string"
 						}
 					]
@@ -486,13 +520,13 @@
 					"formdata": [
 						{
 							"key": "status",
-							"value": "pending",
+							"value": "accept",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/apply-job/2/update",
+					"raw": "http://localhost:8000/api/hire/apply-job/12/update",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -500,8 +534,9 @@
 					"port": "8000",
 					"path": [
 						"api",
+						"hire",
 						"apply-job",
-						"2",
+						"12",
 						"update"
 					]
 				}
@@ -516,7 +551,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "18|Uw8V2R5YjDDzJVENsRo2RLxOw5pyCOqmUpKil2ioe1c14769",
+							"value": "3|X4mmDMxh2YRYgkrxymI3UAUT4ueC7RAFNzPxfx3O3c4e04a5",
 							"type": "string"
 						}
 					]
@@ -524,7 +559,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8000/api/apply-job",
+					"raw": "http://localhost:8000/api/worker/apply-job",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -532,6 +567,7 @@
 					"port": "8000",
 					"path": [
 						"api",
+						"worker",
 						"apply-job"
 					]
 				}
@@ -546,7 +582,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "18|Uw8V2R5YjDDzJVENsRo2RLxOw5pyCOqmUpKil2ioe1c14769",
+							"value": "2|ueOxUqyXL7SfEB3w44q6pqg8soEUmCGd57HOh8aG4fb0de18",
 							"type": "string"
 						}
 					]
@@ -554,7 +590,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8000/api/apply-job/all",
+					"raw": "http://localhost:8000/api/hire/apply-job/all",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -562,6 +598,7 @@
 					"port": "8000",
 					"path": [
 						"api",
+						"hire",
 						"apply-job",
 						"all"
 					]
