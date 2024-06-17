@@ -18,10 +18,6 @@ class ProfileController extends Controller
         if ($request->user('sanctum')) {
             $user = User::find($request->user('sanctum')->id);
 
-            $foto_name = env('APP_URL').'/api/assets/images/'.$user->foto;
-            $file_name = env('APP_URL').'/api/assets/files/'.$user->file;
-            $foto_url = env('APP_URL').'/api/assets/files/'.$user->foto_url;
-            $file_url = env('APP_URL').'/api/assets/files/'.$user->file_url;
             $user_info = [
                 'name' => $user->name,
                 'email' => $user->email,
@@ -29,10 +25,10 @@ class ProfileController extends Controller
                 'address' => $user->address,
                 'role' => $user->role,
                 'description' => $user->description,
-                'foto' => $foto_name,
-                'file' => $file_name,
-                'foto_url' => $foto_url,
-                'file_url' => $file_url
+                'foto' => $user->foto,
+                'file' => $user->file,
+                'foto_url' => $user->foto_url,
+                'file_url' => $user->file_url
             ];
             return response()->json(new ApiResource(200, true, 'Success to get user information', $user_info), 200);            
         } else {
