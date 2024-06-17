@@ -29,6 +29,7 @@ Route::middleware('auth.api')->group(function() {
     Route::post('/jobs/{id}', [Jobs::class, 'EditJob']);
     Route::delete('/jobs/{id}', [Jobs::class, 'DeleteJob']);
     Route::get('/apply-job', [ApplyJob::class, 'GetApplyJob']);
+    Route::get('/apply-job/all', [ApplyJob::class, 'GetAllApplyJob']);
     Route::post('/apply-job/{id}', [ApplyJob::class, 'ApplyJob']);
     Route::post('/apply-job/{id}/update', [ApplyJob::class, 'UpdateApplyJob']);
     Route::post('/profile', [ProfileController::class, 'UpdateProfile']);
