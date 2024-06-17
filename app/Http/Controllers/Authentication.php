@@ -26,20 +26,35 @@ class Authentication extends Controller
         }
         $validatedData = $validator->validated();
         if (Auth::attempt($validatedData)) {
-            $user = User::where('email', $validatedData['email'])->first();
-            $token = $user->createToken("token")->plainTextToken;
-            return response()->json(new ApiResource(200, true, "Login Success", $token), 200);
+            DB::beginTransaction();
+            try {
+                $user = User::where('email', $validatedData['email'])->first();
+                $user->tokens()->delete();
+                $token = $user->createToken("token")->plainTextToken;
+                DB::commit();
+                return response()->json(new ApiResource(200, true, "Login Success", $token), 200);
+            } catch (Exception $e) {
+                DB::rollBack();
+                return response()->json(new ApiResource(500, false, "Login Failed", $e->getMessage()), 500);
+            } 
         }
         else {            
-            return response()->json(new ApiResource(401, false, "Login Failed", null), 401);
+            return response()->json(new ApiResource(401, false, "Login Failed, invalid credentials", null), 401);
         }
     }
     
     public function Logout(Request $request) {
         
         if ($request->user('sanctum')) {
-            $request->user('sanctum')->currentAccessToken()->delete();
-            return response()->json(new ApiResource(200, true, "Logout Success", null), 200);
+            DB::beginTransaction();
+            try {
+                $request->user('sanctum')->currentAccessToken()->delete();
+                DB::commit();
+                return response()->json(new ApiResource(200, true, "Logout Success", null), 200);
+            } catch (Exception $e) {
+                DB::rollBack();
+                return response()->json(new ApiResource(500, false, "Logout Failed", $e->getMessage()), 500);
+            }
         } else {            
             return response()->json(new ApiResource(401, true, "Logout Failed, Invalid or expired token", null), 401);
         }
