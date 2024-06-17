@@ -18,10 +18,8 @@ class Job extends Model
         'salarymin',
         'salarymax',
         'image',
-        'date',
         'id_user'
     ];
-    public $timestamps = false;
 
     public function GetUser() {
         return $this->belongsTo(User::class, 'id_user');

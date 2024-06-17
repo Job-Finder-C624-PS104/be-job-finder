@@ -25,7 +25,6 @@ class JobFactory extends Factory
             'salarymin' => fake()->numberBetween(1000000, 10000000),
             'salarymax' => fake()->numberBetween(1000000, 10000000),
             'type' => fake()->randomElement(['Full Time', 'Part Time', 'Remote']),
-            'date' => fake()->date(),
             'id_user' => User::all()->random()->id
         ];
     }
