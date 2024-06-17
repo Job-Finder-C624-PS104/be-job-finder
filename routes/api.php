@@ -24,14 +24,15 @@ Route::get('/jobs', [Jobs::class, 'GetAllJob']);
 
 Route::middleware('auth.api')->group(function() {
     Route::post('/logout', [Authentication::class, 'Logout']);
-    Route::get('/jobs/dashboard', [Jobs::class, 'GetDashboardJob']);
-    Route::post('/jobs', [Jobs::class, 'CreateJob']);
-    Route::post('/jobs/{id}', [Jobs::class, 'EditJob']);
-    Route::delete('/jobs/{id}', [Jobs::class, 'DeleteJob']);
-    Route::get('/apply-job', [ApplyJob::class, 'GetApplyJob']);
-    Route::get('/apply-job/all', [ApplyJob::class, 'GetAllApplyJob']);
-    Route::post('/apply-job/{id}', [ApplyJob::class, 'ApplyJob']);
-    Route::post('/apply-job/{id}/update', [ApplyJob::class, 'UpdateApplyJob']);
+    Route::get('/hire/jobs/dashboard', [Jobs::class, 'GetDashboardJob']);
+    Route::get('/hire/jobs', [Jobs::class, 'GetDashboardAllJob']);
+    Route::post('/hire/jobs', [Jobs::class, 'CreateJob']);
+    Route::post('/hire/jobs/{id}', [Jobs::class, 'EditJob']);
+    Route::delete('/hire/jobs/{id}', [Jobs::class, 'DeleteJob']);
+    Route::get('/worker/apply-job', [ApplyJob::class, 'GetApplyJob']);
+    Route::get('/hire/apply-job/all', [ApplyJob::class, 'GetAllApplyJob']);
+    Route::post('/worker/apply-job/{id}', [ApplyJob::class, 'ApplyJob']);
+    Route::post('/hire/apply-job/{id}/update', [ApplyJob::class, 'UpdateApplyJob']);
     Route::post('/profile', [ProfileController::class, 'UpdateProfile']);
     Route::get('/profile', [ProfileController::class, 'GetProfile']);
 });
