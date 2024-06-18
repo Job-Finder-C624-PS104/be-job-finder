@@ -56,7 +56,7 @@ class Jobs extends Controller
                 $end_date = Carbon::now()->startOfMonth()->addMonths($i)->endOfMonth()->toDateString();
                         
                 $total_count_job = Job::where('id_user', $request->user('sanctum')->id)->whereBetween('created_at', [$start_date, $end_date])->count();            
-                $records_jobs_month[$i] = $total_count_job;
+                $records_jobs_month[$start_date] = $total_count_job;
             }
             foreach ($jobs as $job) {
                 $count_apply = ApplyJob::where('id_job', $job->id)->count();
@@ -66,7 +66,7 @@ class Jobs extends Controller
                     $end_date = Carbon::now()->startOfMonth()->addMonths($i)->endOfMonth()->toDateString();
                             
                     $total_count_apply = ApplyJob::where('id_job', $job->id)->whereBetween('created_at', [$start_date, $end_date])->count();
-                    $records_apply_month[$i] = $total_count_apply;
+                    $records_apply_month[$start_date] = $total_count_apply;
                 }
             }        
             
