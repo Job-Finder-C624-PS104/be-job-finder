@@ -16,7 +16,9 @@ class ApplyJob extends Controller
         if ($request->user('sanctum')->role != 'hire') {
             return response()->json(new ApiResource(403, true, 'Failed to get all apply job, forbidden access no permission', null), 403);            
         }
-        $jobs = ModelsApplyJob::orderBy('id', 'desc')->with('GetJob')->with('GetUser')->get();
+        $jobs = Job::with(['ApplyJob' => function ($query) {
+            $query->with('GetUser');
+        }])->where('id_user', $request->user('sanctum')->id)->get();
 
         if ($jobs) {
             return response()->json(new ApiResource(200, true, 'Successfully to get all applied jobs', $jobs), 200);
