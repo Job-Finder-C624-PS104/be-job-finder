@@ -16,12 +16,19 @@ class ApplyJob extends Controller
         if ($request->user('sanctum')->role != 'hire') {
             return response()->json(new ApiResource(403, true, 'Failed to get all apply job, forbidden access no permission', null), 403);            
         }
-        $jobs = Job::with(['ApplyJob' => function ($query) {
-            $query->with('GetUser');
-        }])->where('id_user', $request->user('sanctum')->id)->get();
+        $jobs = Job::where('id_user', $request->user('sanctum')->id)->get();
+        $apply = [];
+        foreach ($jobs as $job) {
+            $job_apply = ModelsApplyJob::where('id_job', $job->id)->with('GetUser')->with('GetJob')->get();
 
+            if ($job_apply->count() > 0) {
+                foreach ($job_apply as $apply_job) {
+                  $apply[] = $apply_job;
+                }
+              }        
+        }
         if ($jobs) {
-            return response()->json(new ApiResource(200, true, 'Successfully to get all applied jobs', $jobs), 200);
+            return response()->json(new ApiResource(200, true, 'Successfully to get all applied jobs', $apply), 200);
         } else {
             return response()->json(new ApiResource(400, true, 'Failed to get all applied jobs, not found', null), 400);
         }
@@ -74,7 +81,8 @@ class ApplyJob extends Controller
         DB::beginTransaction();
         try {
             $validator = Validator::make($request->all(), [
-                'status' => ['required', 'in:pending,accept,reject']
+                'status' => ['required', 'in:pending,accept,reject'],
+                'id_user' => ['required', 'exists:users,id']
             ]);
             if ($validator->fails()) {
                 // DB::rollBack();
@@ -82,7 +90,7 @@ class ApplyJob extends Controller
             }
             $validatedData = $validator->validated();
 
-            $apply = ModelsApplyJob::where('id_job', $id)->with('GetJob')->with('GetUser')->first();
+            $apply = ModelsApplyJob::where('id_job', $id)->where('id_user', $validatedData['id_user'])->with('GetJob')->with('GetUser')->first();
             if (!$apply) {
                 // DB::rollBack();
                 return response()->json(new ApiResource(404, false, 'Job applied not found', null), 404);
