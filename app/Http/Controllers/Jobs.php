@@ -159,7 +159,7 @@ class Jobs extends Controller
                 'id_user' => $request->user('sanctum')->id
             ]);
             DB::commit();
-            return response()->json(new ApiResource(201, true, "Job has been successfully updated", $job), 201);
+            return response()->json(new ApiResource(200, true, "Job has been successfully updated", $job), 200);
         } catch (Exception $e) {
             DB::rollBack();
             return response()->json(new ApiResource(500, true, "Job has been failed to be updated", $e->getMessage()), 500);
