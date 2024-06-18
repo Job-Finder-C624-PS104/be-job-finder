@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Validator;
 class Jobs extends Controller
 {
     public function GetAllJob() {
-        $jobs = Job::with('GetUser')->get();
+        $jobs = Job::with('GetUser')->orderBy('id', 'desc')->get();
         
         if ($jobs) {
             return response()->json(new ApiResource(200, true, 'Successfully to get all job', $jobs), 200);
@@ -30,7 +30,7 @@ class Jobs extends Controller
         if ($request->user('sanctum')->role != 'hire') {
             return response()->json(new ApiResource(403, true, 'Failed to get all job, forbidden access no permission', null), 403);            
         }
-        $jobs = Job::where('id_user', $request->user('sanctum')->id)->with('GetUser')->get();
+        $jobs = Job::where('id_user', $request->user('sanctum')->id)->orderBy('id', 'desc')->with('GetUser')->get();
         
         if ($jobs) {
             return response()->json(new ApiResource(200, true, 'Successfully to get all job', $jobs), 200);
