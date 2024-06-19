@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "4964c487-3bdf-48cc-a482-bed1341c6dfb",
-		"name": "jobfinder-prod",
+		"_postman_id": "d99bebd3-1521-4eb3-9131-0388e5bd3dc2",
+		"name": "jobfinder-staging",
 		"description": "Documentation for Website JobFinder build with Frontend ReactJS and Backend Laravel.  \nAuthor:  \n1\\. @Azzaxy ([https://github.com/azzaxy1](https://github.com/azzaxy1)) \\[Frontend Developer\\]\n\n2\\. @Anuraaaa ([https://github.com/Anuraaaa](https://github.com/Anuraaaa)) \\[Backend Developer\\]\n\n3\\. @Marcel ([https://github.com/aclrdhv](https://github.com/aclrdhv)) \\[Frontend Developer\\]",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "27116353"
@@ -48,11 +48,11 @@
 					]
 				},
 				"url": {
-					"raw": "https://jobfinder.orangtuarp.my.id/api/register",
+					"raw": "https://jobfinder.anwar-fauzan.my.id/api/register",
 					"protocol": "https",
 					"host": [
 						"jobfinder",
-						"orangtuarp",
+						"anwar-fauzan",
 						"my",
 						"id"
 					],
@@ -85,11 +85,11 @@
 					]
 				},
 				"url": {
-					"raw": "https://jobfinder.orangtuarp.my.id/api/login",
+					"raw": "https://jobfinder.anwar-fauzan.my.id/api/login",
 					"protocol": "https",
 					"host": [
 						"jobfinder",
-						"orangtuarp",
+						"anwar-fauzan",
 						"my",
 						"id"
 					],
@@ -117,11 +117,11 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "https://jobfinder.orangtuarp.my.id/api/logout",
+					"raw": "https://jobfinder.anwar-fauzan.my.id/api/logout",
 					"protocol": "https",
 					"host": [
 						"jobfinder",
-						"orangtuarp",
+						"anwar-fauzan",
 						"my",
 						"id"
 					],
@@ -149,11 +149,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://jobfinder.orangtuarp.my.id/api/profile",
+					"raw": "https://jobfinder.anwar-fauzan.my.id/api/profile",
 					"protocol": "https",
 					"host": [
 						"jobfinder",
-						"orangtuarp",
+						"anwar-fauzan",
 						"my",
 						"id"
 					],
@@ -235,11 +235,11 @@
 					]
 				},
 				"url": {
-					"raw": "https://jobfinder.orangtuarp.my.id/api/profile",
+					"raw": "https://jobfinder.anwar-fauzan.my.id/api/profile",
 					"protocol": "https",
 					"host": [
 						"jobfinder",
-						"orangtuarp",
+						"anwar-fauzan",
 						"my",
 						"id"
 					],
@@ -257,11 +257,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://jobfinder.orangtuarp.my.id/api/jobs",
+					"raw": "https://jobfinder.anwar-fauzan.my.id/api/jobs",
 					"protocol": "https",
 					"host": [
 						"jobfinder",
-						"orangtuarp",
+						"anwar-fauzan",
 						"my",
 						"id"
 					],
@@ -289,11 +289,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://jobfinder.orangtuarp.my.id/api/hire/jobs/dashboard",
+					"raw": "https://jobfinder.anwar-fauzan.my.id/api/hire/jobs/dashboard",
 					"protocol": "https",
 					"host": [
 						"jobfinder",
-						"orangtuarp",
+						"anwar-fauzan",
 						"my",
 						"id"
 					],
@@ -323,11 +323,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://jobfinder.orangtuarp.my.id/api/hire/jobs/",
+					"raw": "https://jobfinder.anwar-fauzan.my.id/api/hire/jobs/",
 					"protocol": "https",
 					"host": [
 						"jobfinder",
-						"orangtuarp",
+						"anwar-fauzan",
 						"my",
 						"id"
 					],
@@ -397,11 +397,11 @@
 					]
 				},
 				"url": {
-					"raw": "https://jobfinder.orangtuarp.my.id/api/hire/jobs",
+					"raw": "https://jobfinder.anwar-fauzan.my.id/api/hire/jobs",
 					"protocol": "https",
 					"host": [
 						"jobfinder",
-						"orangtuarp",
+						"anwar-fauzan",
 						"my",
 						"id"
 					],
@@ -470,11 +470,11 @@
 					]
 				},
 				"url": {
-					"raw": "https://jobfinder.orangtuarp.my.id/api/hire/jobs/1",
+					"raw": "https://jobfinder.anwar-fauzan.my.id/api/hire/jobs/1",
 					"protocol": "https",
 					"host": [
 						"jobfinder",
-						"orangtuarp",
+						"anwar-fauzan",
 						"my",
 						"id"
 					],
@@ -504,11 +504,11 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "https://jobfinder.orangtuarp.my.id/api/hire/jobs/1",
+					"raw": "https://jobfinder.anwar-fauzan.my.id/api/hire/jobs/1",
 					"protocol": "https",
 					"host": [
 						"jobfinder",
-						"orangtuarp",
+						"anwar-fauzan",
 						"my",
 						"id"
 					],
@@ -538,11 +538,11 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "https://jobfinder.orangtuarp.my.id/api/worker/apply-job/12",
+					"raw": "https://jobfinder.anwar-fauzan.my.id/api/worker/apply-job/12",
 					"protocol": "https",
 					"host": [
 						"jobfinder",
-						"orangtuarp",
+						"anwar-fauzan",
 						"my",
 						"id"
 					],
@@ -587,11 +587,11 @@
 					]
 				},
 				"url": {
-					"raw": "https://jobfinder.orangtuarp.my.id/api/hire/apply-job/12/update",
+					"raw": "https://jobfinder.anwar-fauzan.my.id/api/hire/apply-job/12/update",
 					"protocol": "https",
 					"host": [
 						"jobfinder",
-						"orangtuarp",
+						"anwar-fauzan",
 						"my",
 						"id"
 					],
@@ -622,11 +622,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://jobfinder.orangtuarp.my.id/api/worker/apply-job",
+					"raw": "https://jobfinder.anwar-fauzan.my.id/api/worker/apply-job",
 					"protocol": "https",
 					"host": [
 						"jobfinder",
-						"orangtuarp",
+						"anwar-fauzan",
 						"my",
 						"id"
 					],
@@ -655,11 +655,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://jobfinder.orangtuarp.my.id/api/hire/apply-job/all",
+					"raw": "https://jobfinder.anwar-fauzan.my.id/api/hire/apply-job/all",
 					"protocol": "https",
 					"host": [
 						"jobfinder",
-						"orangtuarp",
+						"anwar-fauzan",
 						"my",
 						"id"
 					],
