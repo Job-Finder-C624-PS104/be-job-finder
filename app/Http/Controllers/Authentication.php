@@ -29,7 +29,6 @@ class Authentication extends Controller
             DB::beginTransaction();
             try {
                 $user = User::where('email', $validatedData['email'])->first();
-                $user->tokens()->delete();
                 $token = $user->createToken("token")->plainTextToken;
                 DB::commit();
                 return response()->json(new ApiResource(200, true, "Login Success", $token), 200);
