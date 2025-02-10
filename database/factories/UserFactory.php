@@ -23,14 +23,17 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $role = fake()->randomElement(['worker', 'hire', 'admin']);
+
         return [
-            'name' => fake()->name(),
+            'name' => $role === 'hire'? fake()->company() : fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
+            'password' => static::$password ??= Hash::make('Password123!'),
             'remember_token' => Str::random(10),
             'phone' => fake()->unique()->regexify('(?\0)[2-9][0-9]{7,12}'),
-            'role' => fake()->randomElement(['worker', 'hire']),
+            'role' => $role,
+            'description' => $role == 'hire' ? "<h3>Tentang Kami</h3> <p>" . $this->faker->paragraph(3) . "</p> <h3>Visi & Misi</h3> <p>" . $this->faker->sentence(10) . "</p>" : null,
         ];
     }
 

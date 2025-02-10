@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('salarymin')->nullable(false);
             $table->integer('salarymax')->nullable(false);
             $table->longText('description')->nullable(false);
+            $table->enum('status', ['approve', 'reject', 'pending']);
             $table->timestamps();
             $table->unsignedBigInteger('id_user')->nullable(false);
             $table->foreign('id_user')->on('users')->references('id')->onUpdate('cascade')->onDelete('cascade');

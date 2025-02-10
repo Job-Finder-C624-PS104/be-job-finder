@@ -18,10 +18,15 @@ class Job extends Model
         'salarymin',
         'salarymax',
         'image',
+        'status',
         'id_user'
     ];
 
     public function GetUser() {
         return $this->belongsTo(User::class, 'id_user');
+    }
+
+    public function GetApply() {
+        return $this->hasMany(ApplyJob::class, 'id_job');
     }
 }

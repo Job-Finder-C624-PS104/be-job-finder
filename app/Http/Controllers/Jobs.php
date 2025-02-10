@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Resources\ApiResource;
 use App\Http\Controllers\Controller;
 use App\Models\ApplyJob;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -111,7 +112,8 @@ class Jobs extends Controller
                 'salarymax' => $validatedData['salarymax'],
                 'type' => $validatedData['type'],
                 'description' => $validatedData['description'],
-                'id_user' => $request->user('sanctum')->id
+                'id_user' => $request->user('sanctum')->id,
+                'status' => 'pending'
             ]);
             DB::commit();
             return response()->json(new ApiResource(201, true, "Job has been successfully added", $job), 201);
@@ -184,5 +186,131 @@ class Jobs extends Controller
             DB::rollBack();
             return response()->json(new ApiResource(500, true, "Job has been failed to be deleted", $e->getMessage()), 500);
         }
+    }
+
+    public function GetReport(Request $request) {
+        if ($request->user('sanctum')->role != 'hire') {
+            return response()->json(new ApiResource(403, true, 'Failed to get report jobs, forbidden access no permission', null), 403);            
+        }
+        $jobs = Job::where('id_user', $request->user('sanctum')->id)->orderBy('id', 'desc')->withCount('GetApply')->get();
+
+        if ($jobs) {
+            return response()->json(new ApiResource(200, true, 'Successfully to get report jobs', $jobs), 200);
+        } else {
+            return response()->json(new ApiResource(400, true, 'Failed to get report jobs, not found', null), 400);
+        }        
+    }
+
+    public function GetDashboardJobAdmin(Request $request) {
+        if ($request->user('sanctum')->role != 'admin') {
+            return response()->json(new ApiResource(403, true, 'Failed to get dashboard job, forbidden access no permission', null), 403);            
+        }
+        $jobs = Job::all();
+        if ($jobs) {
+
+            $count_jobs = $jobs->count();
+            $count_hires = User::where('role', 'hire')->count();
+            $count_apply = 0;
+            $records_jobs_month = [];
+            $records_apply_month = [];
+            $records_hire_month = [];
+            for ($i = 0; $i <= 5; $i++) {
+                $start_date = Carbon::now()->startOfMonth()->addMonths($i)->toDateString();
+                $end_date = Carbon::now()->startOfMonth()->addMonths($i)->endOfMonth()->toDateString();
+                        
+                $total_count_job = Job::whereBetween('created_at', [$start_date, $end_date])->count();            
+                $total_count_hire = User::where('role', 'hire')->whereBetween('created_at', [$start_date, $end_date])->count();            
+                $records_hire_month[$start_date] = $total_count_hire;
+                $records_jobs_month[$start_date] = $total_count_job;
+            }
+            foreach ($jobs as $job) {
+                $count_apply = ApplyJob::where('id_job', $job->id)->count();
+
+                for ($i = 0; $i <= 5; $i++) {
+                    $start_date = Carbon::now()->startOfMonth()->addMonths($i)->toDateString();
+                    $end_date = Carbon::now()->startOfMonth()->addMonths($i)->endOfMonth()->toDateString();
+                            
+                    $total_count_apply = ApplyJob::where('id_job', $job->id)->whereBetween('created_at', [$start_date, $end_date])->count();
+                    $records_apply_month[$start_date] = $total_count_apply;
+                }
+            }        
+            
+            return response()->json(new ApiResource(200, true, 'Successfully to get all job', [
+                'totalJobs' => $count_jobs,
+                'recordsJobs' => $records_jobs_month,
+                'totalApply' => $count_apply,
+                'recordsApply' => $records_apply_month,
+                'totalHires' => $count_hires,
+                'recordsHires' => $records_hire_month
+            ]), 200);
+        }
+        else {
+            return response()->json(new ApiResource(400, true, 'Failed to get all job, not found', null), 400);
+        }
+    }
+
+    public function GetAllJobAdmin(Request $request) {
+        if ($request->user('sanctum')->role != 'admin') {
+            return response()->json(new ApiResource(403, true, 'Failed to get job, forbidden access no permission', null), 403);            
+        }
+        $jobs = Job::orderBy('id', 'desc')->get();
+        if ($jobs) {
+            return response()->json(new ApiResource(200, true, 'Successfully to get all jobs', $jobs), 200);
+        } else {
+            return response()->json(new ApiResource(400, true, 'Failed to get all jobs, not found', null), 400);
+        }
+    }
+
+    public function UpdateStatusJob(Request $request, $id) {
+        DB::beginTransaction();
+        try {
+            $validator = Validator::make($request->all(), [
+                'status' => ['required', 'in:pending,approve,reject']
+            ]);
+            if ($validator->fails()) {
+                // DB::rollBack();
+                return response()->json(new ApiResource(422, false, $validator->errors(), null), 422);
+            }
+            $validatedData = $validator->validated();
+
+            $job = Job::where('id', $id)->first();
+            if (!$job) {
+                // DB::rollBack();
+                return response()->json(new ApiResource(404, false, 'Job not found', null), 404);
+            }
+            $job->update([
+                'status' => $validatedData['status']
+            ]);
+            DB::commit();
+            return response()->json(new ApiResource(200, true, "Job has been successfully updated", $job), 200);
+        } catch (Exception $e) {
+            DB::rollBack();
+            return response()->json(new ApiResource(500, true, "Job has been failed to be updated", $e->getMessage()), 500);
+        }
+    }
+
+    public function GetAllUser(Request $request) {
+        if ($request->user('sanctum')->role != 'admin') {
+            return response()->json(new ApiResource(403, true, 'Failed to get job, forbidden access no permission', null), 403);            
+        }
+        $users = User::orderBy('id', 'desc')->get();
+        if ($users) {
+            return response()->json(new ApiResource(200, true, 'Successfully to get all users', $users), 200);
+        } else {
+            return response()->json(new ApiResource(400, true, 'Failed to get all users, not found', null), 400);
+        }
+    }
+
+    public function GetReportAdmin(Request $request) {
+        if ($request->user('sanctum')->role != 'admin') {
+            return response()->json(new ApiResource(403, true, 'Failed to get report jobs, forbidden access no permission', null), 403);            
+        }
+        $jobs = Job::orderBy('id', 'desc')->withCount('GetApply')->with('GetUser')->get();
+
+        if ($jobs) {
+            return response()->json(new ApiResource(200, true, 'Successfully to get report jobs', $jobs), 200);
+        } else {
+            return response()->json(new ApiResource(400, true, 'Failed to get report jobs, not found', null), 400);
+        }        
     }
 }

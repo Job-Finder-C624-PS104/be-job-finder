@@ -29,10 +29,15 @@ Route::middleware('auth.api')->group(function() {
     Route::post('/hire/jobs', [Jobs::class, 'CreateJob']);
     Route::post('/hire/jobs/{id}', [Jobs::class, 'EditJob']);
     Route::delete('/hire/jobs/{id}', [Jobs::class, 'DeleteJob']);
+    Route::get('/hire/report', [Jobs::class, 'GetReport']);
     Route::get('/worker/apply-job', [ApplyJob::class, 'GetApplyJob']);
     Route::get('/hire/apply-job/all', [ApplyJob::class, 'GetAllApplyJob']);
     Route::post('/worker/apply-job/{id}', [ApplyJob::class, 'ApplyJob']);
     Route::post('/hire/apply-job/{id}/update', [ApplyJob::class, 'UpdateApplyJob']);
+    Route::get('/admin/dashboard', [Jobs::class, 'GetDashboardJobAdmin']);
+    Route::get('/admin/jobs', [Jobs::class, 'GetAllJobAdmin']);
+    Route::get('/admin/all-user', [Jobs::class, 'GetAllUser']);
+    Route::get('/admin/report', [Jobs::class, 'GetReportAdmin']);
     Route::post('/profile', [ProfileController::class, 'UpdateProfile']);
     Route::get('/profile', [ProfileController::class, 'GetProfile']);
 });

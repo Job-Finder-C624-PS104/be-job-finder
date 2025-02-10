@@ -19,8 +19,8 @@ class ApplyJobFactory extends Factory
     public function definition(): array
     {
         return [
-            'id_user' => User::all()->random()->id,
-            'id_job' => Job::all()->random()->id,
+            'id_user' => User::where('role', 'worker')->inRandomOrder()->first()->id,
+            'id_job' => Job::where('status', 'approve')->inRandomOrder()->first()->id,
             'status' => fake()->randomElement(['pending', 'accept', 'reject'])
         ];
     }

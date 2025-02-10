@@ -20,7 +20,7 @@ return new class extends Migration
             $table->longText('description')->nullable(true);
             $table->longText('address')->nullable(true);
             $table->string('phone')->unique()->nullable(false);
-            $table->enum('role', ['worker', 'hire'])->nullable(false);
+            $table->enum('role', ['worker', 'hire', 'admin'])->nullable(false);
             $table->longText('foto')->nullable(true);
             $table->longText('foto_url')->nullable(true);
             $table->longText('file')->nullable(true);
