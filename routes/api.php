@@ -4,6 +4,7 @@ use App\Http\Controllers\ApplyJob;
 use App\Http\Controllers\Authentication;
 use App\Http\Controllers\Jobs;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,9 @@ Route::middleware('auth.api')->group(function() {
     Route::get('/admin/dashboard', [Jobs::class, 'GetDashboardJobAdmin']);
     Route::get('/admin/jobs', [Jobs::class, 'GetAllJobAdmin']);
     Route::get('/admin/all-user', [Jobs::class, 'GetAllUser']);
+    Route::post('/admin/all-user/add', [UserController::class, 'AddUser']);
+    Route::post('/admin/all-user/{id}/edit', [UserController::class, 'EditUser']);
+    Route::delete('/admin/all-user/{id}/delete', [UserController::class, 'DeleteUser']);
     Route::get('/admin/report', [Jobs::class, 'GetReportAdmin']);
     Route::post('/profile', [ProfileController::class, 'UpdateProfile']);
     Route::get('/profile', [ProfileController::class, 'GetProfile']);
