@@ -31,7 +31,7 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('Password123!'),
             'remember_token' => Str::random(10),
-            'phone' => fake()->unique()->regexify('(?\0)[2-9][0-9]{7,12}'),
+            'phone' => fake()->unique()->regexify('[2-9][0-9]{7,12}'),
             'role' => $role,
             'description' => $role == 'hire' ? "<h3>Tentang Kami</h3> <p>" . $this->faker->paragraph(3) . "</p> <h3>Visi & Misi</h3> <p>" . $this->faker->sentence(10) . "</p>" : null,
         ];
